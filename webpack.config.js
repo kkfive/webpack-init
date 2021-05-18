@@ -63,7 +63,7 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
-      // less解析
+      // styl解析
       {
         test: /\.styl$/,
         use: [
@@ -72,6 +72,20 @@ module.exports = {
           'postcss-loader',
           'stylus-loader'
         ]
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        loader: 'url-loader',
+        options: {
+          esModule: false
+        }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        loader: 'file-loader',
+        options: {
+          esModule: false
+        }
       }
     ]
   },
