@@ -6,3 +6,133 @@
  * @LastEditTime: 2021-05-18 09:39:58
  * @LastEditors: 小康
  */
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+module.exports = {
+  // 入口
+  entry: {
+    index: './src/js/index.js',
+    about: './src/js/about.js'
+  },
+  // 输出
+  output: {
+    path: resolve(__dirname, 'dist'),
+    // filename: 'assets/[name].[chunkhash:6].js'
+    filename: 'assets/js/[name].[chunkhash:6].js'
+  },
+  // loader配置
+  module: {
+    rules: [
+      // js兼容
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    useBuiltIns: 'usage',
+                    corejs: {
+                      //core-js的版本
+                      version: 3
+                    },
+                    //需要兼容的浏览器
+                    targets: {
+                      chrome: '60',
+                      firefox: '60',
+                      ie: '9',
+                      safari: '10',
+                      edge: '17'
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      // css解析
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      },
+      // less解析
+      {
+        test: /\.styl$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/template/index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: './src/template/about.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      chunks: ['about']
+    }),
+    // 压缩CSS
+    new OptiomizeCssAssetsWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/[name].[contenthash:6].css' //对输出的文件进行重命名,默认为main.css
+    }),
+    new CleanWebpackPlugin()
+  ],
+
+  // 模式 development 或 production
+  mode: 'development', // 开发模式
+  // 开发服务器devServer 启动指令 webpack serve
+  devServer: {
+    // 构建后的路径
+    contentBase: resolve(__dirname, 'dist'),
+    // 启动gzip压缩
+    compress: true,
+    // 端口号
+    port: 3000,
+    // 自动打开浏览器
+    open: true,
+    // HMR
+    hot: true
+  }
+}

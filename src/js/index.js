@@ -6,5 +6,6 @@
  * @LastEditTime: 2021-05-18 09:32:23
  * @LastEditors: 小康
  */
+import '../style/index/index.styl'
 import { say } from './modules/sayHello'
 say('index')
