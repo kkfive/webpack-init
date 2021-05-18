@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: resolve(__dirname, 'dist'),
     // filename: 'assets/[name].[chunkhash:6].js'
-    filename: 'assets/js/[name].[chunkhash:6].js'
+    filename: 'assets/js/[name].[chunkhash:8].js'
   },
   // loader配置
   module: {
@@ -77,14 +77,17 @@ module.exports = {
         test: /\.(png|svg|jpe?g|gif)$/i,
         loader: 'url-loader',
         options: {
-          esModule: false
+          esModule: false,
+          limit: 500,
+          name: 'assets/image/[name]_[hash:8].[ext]'
         }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         loader: 'file-loader',
         options: {
-          esModule: false
+          esModule: false,
+          name: 'assets/font/[name]_[hash:8].[ext]'
         }
       }
     ]
@@ -129,7 +132,7 @@ module.exports = {
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].[contenthash:6].css' //对输出的文件进行重命名,默认为main.css
+      filename: 'assets/css/[name].[contenthash:8].css' //对输出的文件进行重命名,默认为main.css
     }),
     new CleanWebpackPlugin()
   ],
