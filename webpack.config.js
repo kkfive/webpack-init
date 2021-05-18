@@ -11,12 +11,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-module.exports = {
+const { getEntry, getHtmlWebpack } = require('./webpack/index')
+const webpackConfig = {
   // 入口
-  entry: {
-    index: './src/js/index.js',
-    about: './src/js/about.js'
-  },
+  entry: getEntry('./src/js'),
   // 输出
   output: {
     path: resolve(__dirname, 'dist'),
@@ -79,6 +77,21 @@ module.exports = {
           'stylus-loader'
         ]
       },
+      // pug模板
+      {
+        test: /\.pug/,
+        use: [
+          'raw-loader',
+          {
+            loader: 'pug-html-loader',
+            options: {
+              // options to pass to the compiler same as: https://pugjs.org/api/reference.html
+              data: {} // set of data to pass to the pug render.
+            }
+          }
+        ]
+      },
+      // 图片
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
         loader: 'url-loader',
@@ -88,6 +101,7 @@ module.exports = {
           name: '/assets/image/[name]_[hash:8].[ext]'
         }
       },
+      // 字体
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         loader: 'file-loader',
@@ -99,42 +113,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/template/index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true
-      },
-      chunks: ['index']
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'about.html',
-      template: './src/template/about.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true
-      },
-      chunks: ['about']
-    }),
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -142,7 +120,26 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ],
-
+  optimization: {
+    splitChunks: {
+      chunks: 'all', //块的范围，有三个可选值：initial/async动态异步加载/all全部块(推荐)，默认为async;
+      cacheGroups: {
+        // 处理入口chunk,同步的
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'initial',
+          name: 'vendors'
+        },
+        // 处理异步chunk
+        'async-vendors': {
+          test: /[\\/]node_modules[\\/]/,
+          minChunks: 2,
+          chunks: 'async',
+          name: 'async-vendors'
+        }
+      }
+    }
+  },
   // 模式 development 或 production
   mode: 'development', // 开发模式
   // 开发服务器devServer 启动指令 webpack serve
@@ -159,3 +156,7 @@ module.exports = {
     hot: true
   }
 }
+getHtmlWebpack('./src/template/').forEach((item) => {
+  webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
+})
+module.exports = webpackConfig
