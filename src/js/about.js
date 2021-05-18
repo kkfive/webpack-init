@@ -6,6 +6,7 @@
  * @LastEditTime: 2021-05-18 09:34:23
  * @LastEditors: 小康
  */
+import 'lib-flexible'
 import '../style/about/index.styl'
 import { say } from './modules/sayHello'
 say('about')

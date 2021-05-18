@@ -20,7 +20,6 @@ module.exports = {
   // 输出
   output: {
     path: resolve(__dirname, 'dist'),
-    // filename: 'assets/[name].[chunkhash:6].js'
     filename: 'assets/js/[name].[chunkhash:8].js'
   },
   // loader配置
@@ -69,6 +68,13 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 37.5 / 2,
+              remPrecision: 8
+            }
+          },
           'postcss-loader',
           'stylus-loader'
         ]
@@ -79,7 +85,7 @@ module.exports = {
         options: {
           esModule: false,
           limit: 500,
-          name: 'assets/image/[name]_[hash:8].[ext]'
+          name: '/assets/image/[name]_[hash:8].[ext]'
         }
       },
       {
@@ -87,7 +93,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           esModule: false,
-          name: 'assets/font/[name]_[hash:8].[ext]'
+          name: '/assets/font/[name]_[hash:8].[ext]'
         }
       }
     ]
