@@ -58,14 +58,30 @@ const webpackConfig = {
       // css解析
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 37.5 / 2,
+              remPrecision: 8
+            }
+          },
+          'postcss-loader'
+        ]
       },
       // styl解析
       {
         test: /\.styl$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 3
+            }
+          },
           {
             loader: 'px2rem-loader',
             options: {
@@ -141,7 +157,7 @@ const webpackConfig = {
     }
   },
   // 模式 development 或 production
-  mode: 'development', // 开发模式
+  mode: 'production', // 开发模式
   // 开发服务器devServer 启动指令 webpack serve
   devServer: {
     // 构建后的路径
