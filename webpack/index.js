@@ -13,4 +13,14 @@ const getEntry = require('./getEntry')
 // 获取Htmlwebapck配置
 const getHtmlWebpack = require('./getHtmlPackConfig')
 
-module.exports = { getEntry, getHtmlWebpack }
+// 获取loader
+const loaderList = require('./loader/index')
+
+// 获取dev server 代理配置
+const proxySetting = require('./devServer/index')
+module.exports = {
+  getEntry,
+  getHtmlWebpack,
+  loaderList,
+  proxySetting
+}

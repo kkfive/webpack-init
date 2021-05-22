@@ -11,7 +11,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { getEntry, getHtmlWebpack } = require('./webpack/index')
+const {
+  getEntry,
+  getHtmlWebpack,
+  loaderList,
+  devServer
+} = require('./webpack/index')
+
 const webpackConfig = {
   // 入口
   entry: getEntry('./src/js'),
@@ -22,111 +28,7 @@ const webpackConfig = {
   },
   // loader配置
   module: {
-    rules: [
-      // js兼容
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    useBuiltIns: 'usage',
-                    corejs: {
-                      //core-js的版本
-                      version: 3
-                    },
-                    //需要兼容的浏览器
-                    targets: {
-                      chrome: '60',
-                      firefox: '60',
-                      ie: '9',
-                      safari: '10',
-                      edge: '17'
-                    }
-                  }
-                ]
-              ]
-            }
-          }
-        ]
-      },
-      // css解析
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 37.5 / 2,
-              remPrecision: 8
-            }
-          },
-          'postcss-loader'
-        ]
-      },
-      // styl解析
-      {
-        test: /\.styl$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 3
-            }
-          },
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 37.5 / 2,
-              remPrecision: 8
-            }
-          },
-          'postcss-loader',
-          'stylus-loader'
-        ]
-      },
-      // pug模板
-      {
-        test: /\.pug/,
-        use: [
-          'raw-loader',
-          {
-            loader: 'pug-html-loader',
-            options: {
-              // options to pass to the compiler same as: https://pugjs.org/api/reference.html
-              data: {} // set of data to pass to the pug render.
-            }
-          }
-        ]
-      },
-      // 图片
-      {
-        test: /\.(png|svg|jpe?g|gif)$/i,
-        loader: 'url-loader',
-        options: {
-          esModule: false,
-          limit: 500,
-          name: '/assets/image/[name]_[hash:8].[ext]'
-        }
-      },
-      // 字体
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        loader: 'file-loader',
-        options: {
-          esModule: false,
-          name: '/assets/font/[name]_[hash:8].[ext]'
-        }
-      }
-    ]
+    rules: loaderList
   },
   plugins: [
     // 压缩CSS
@@ -157,20 +59,9 @@ const webpackConfig = {
     }
   },
   // 模式 development 或 production
-  mode: 'production', // 开发模式
+  mode: process.env.NODE_ENV, // 开发模式
   // 开发服务器devServer 启动指令 webpack serve
-  devServer: {
-    // 构建后的路径
-    contentBase: resolve(__dirname, 'dist'),
-    // 启动gzip压缩
-    compress: true,
-    // 端口号
-    port: 3000,
-    // 自动打开浏览器
-    open: true,
-    // HMR
-    hot: true
-  }
+  devServer
 }
 getHtmlWebpack('./src/template/').forEach((item) => {
   webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
