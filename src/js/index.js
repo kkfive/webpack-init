@@ -9,7 +9,6 @@
 import '../style/index/index.styl'
 import 'lib-flexible'
 import $ from 'jquery'
-import { throttle } from './modules/throttle'
 // 导入better-scroll核心组件
 import BScroll from '@better-scroll/core'
 import Pullup from '@better-scroll/pull-up'
@@ -28,19 +27,23 @@ $(function () {
     scrollY: false,
     probeType: 3 // listening scroll event
   })
+  // 内容区滑动
   let wrapper = document.querySelector('.wrapper')
   bodyScroll = new BScroll(wrapper, {
     scrollY: true,
     probeType: 3, // listening scroll event
     tap: 'tap',
+    // 上拉加载更多示例
     pullUpLoad: true,
-    ObserveDOM: true
+    ObserveDOM: true,
+    // true 使用css
+    useTransition: false
   })
 
   bodyScroll.on('pullingUp', pullingUpHandler)
   bodyScroll.autoPullUpLoad()
 })
-function pullingUpHandler(params) {
+function pullingUpHandler() {
   $('.pullup-txt').show()
   clearTimeout(timer)
   timer = setTimeout(async () => {
