@@ -16,9 +16,10 @@ const devServer = {
   // 端口号
   port: 3000,
   // 自动打开浏览器
-  open: true,
+  open: 'http://127.0.0.1:3000',
   // HMR
   hot: true,
+  host: '0.0.0.0',
   // 代理（解决跨域）
   proxy
 }

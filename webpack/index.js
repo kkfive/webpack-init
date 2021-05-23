@@ -17,10 +17,10 @@ const getHtmlWebpack = require('./getHtmlPackConfig')
 const loaderList = require('./loader/index')
 
 // 获取dev server 代理配置
-const proxySetting = require('./devServer/index')
+const devServer = require('./devServer/index')
 module.exports = {
   getEntry,
   getHtmlWebpack,
   loaderList,
-  proxySetting
+  devServer
 }
