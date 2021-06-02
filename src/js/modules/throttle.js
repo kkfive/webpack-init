@@ -6,7 +6,7 @@
  * @LastEditTime: 2021-05-23 15:19:18
  * @LastEditors: 小康
  */
-function throttle(fn, delay, duration) {
+function throttle(fn, delay) {
   var timer = null
   return function () {
     console.log(fn)
