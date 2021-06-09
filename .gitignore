@@ -114,3 +114,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.idea
+
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/webpack-init.iml
