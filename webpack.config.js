@@ -42,19 +42,42 @@ const webpackConfig = {
     splitChunks: {
       chunks: 'all', //块的范围，有三个可选值：initial/async动态异步加载/all全部块(推荐)，默认为async;
       cacheGroups: {
-        // 处理入口chunk,同步的
+        // commons: {
+        //   name: 'style' ,  // 提取出来的文件命名
+        //   // name： ‘common/common’ //  即先生成common文件夹
+        //   chunks: 'initial',   // initial表示提取入口文件的公共css及js部分
+        //   // chunks: 'all' // 提取所有文件的公共部分
+        //   test: '/\.(scss|css|styl|stylus|less|sass)/',  // 只提取公共css ，命名可改styles
+        //   minChunks:2, // 表示提取公共部分最少的文件数
+        //   minSize: 0,  // 表示提取公共部分最小的大小
+        //   // 如果发现页面中未引用公共文件，加上enforce: true
+        //   enforce: true,
+        //   priority: 20
+        // },
+        // 公共代码部分
+        common: {
+          name: "common",
+          test: /[\\/]src[\\/]/,
+          minSize: 0,
+          minChunks: 2,
+          chunks: "all",
+          priority: 5
+        },
+        // // 处理入口chunk,同步的
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'initial',
-          name: 'vendors'
+          name: 'vendors',
+          priority: 10
         },
         // 处理异步chunk
         'async-vendors': {
           test: /[\\/]node_modules[\\/]/,
           minChunks: 2,
           chunks: 'async',
-          name: 'async-vendors'
-        }
+          name: 'async-vendors',
+          priority: 10
+        },
       }
     }
   },
