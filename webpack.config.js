@@ -16,7 +16,7 @@ const webpack = require('webpack')
 const config = require('./config')
 const webpackConfig = {
   // 入口
-  entry: getEntry('./src/js'),
+  entry: getEntry('./src/ts'),
   // 输出
   output: {
     path: resolve(__dirname, 'dist'),
@@ -27,7 +27,14 @@ const webpackConfig = {
     rules: loaderList
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json']
+    extensions: ['.js', '.ts', '.json'],
+    alias: {
+      '@src': resolve('src'),
+      '@font': resolve('src/font'),
+      '@ts': resolve('src/ts'),
+      '@style': resolve('src/style'),
+      '@image': resolve('src/image')
+    }
   },
   plugins: [
     // 压缩CSS

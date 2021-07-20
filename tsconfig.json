@@ -16,7 +16,9 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@ts/*": ["src/ts/*"],
+      "@style/*": ["src/style/*"],
+      "@image/*": ["src/image/*"]
     }
   },
   "include": ["src/types/images.d.ts", "src/**/*"]
