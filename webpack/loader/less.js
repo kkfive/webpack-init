@@ -1,10 +1,10 @@
 /**
- * @description: 处理css文件
+ * @description: 处理less文件的loader
  */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { px2remLoaderOptions } = require('../config')
-const css = {
-  test: /\.css$/,
+const less = {
+  test: /\.less$/,
   use: [
     {
       loader: MiniCssExtractPlugin.loader,
@@ -12,13 +12,18 @@ const css = {
         publicPath: '../../'
       }
     },
-    'css-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 3
+      }
+    },
     {
       loader: 'px2rem-loader',
       options: px2remLoaderOptions
     },
-    'postcss-loader'
+    'postcss-loader',
+    'less-loader'
   ]
 }
-
-module.exports = css
+module.exports = less
