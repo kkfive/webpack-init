@@ -3,28 +3,31 @@
  */
 import '../style/index/index.styl'
 import 'lib-flexible'
-import $ from 'jquery'
+import * as $ from 'jquery'
 // 导入better-scroll核心组件
 import BScroll from '@better-scroll/core'
 import Pullup from '@better-scroll/pull-up'
 import ObserveDOM from '@better-scroll/observe-dom'
 BScroll.use(ObserveDOM)
 BScroll.use(Pullup)
-let bodyScroll
-let timer
+
+let bodyScroll: BScroll
+let timer: number
+
 let number = 0
 const maxNumber = 10
+
 $(function () {
   // 头部滑动
   let headerWrapper = document.querySelector('.header-wrapper')
-  let headerScroll = new BScroll(headerWrapper, {
+  let headerScroll = new BScroll(headerWrapper as HTMLElement, {
     scrollX: true,
     scrollY: false,
     probeType: 3 // listening scroll event
   })
   // 内容区滑动
   let wrapper = document.querySelector('.wrapper')
-  bodyScroll = new BScroll(wrapper, {
+  bodyScroll = new BScroll(wrapper as HTMLElement, {
     scrollY: true,
     probeType: 3, // listening scroll event
     tap: 'tap',
@@ -41,7 +44,7 @@ $(function () {
 function pullingUpHandler() {
   $('.pullup-txt').show()
   clearTimeout(timer)
-  timer = setTimeout(async () => {
+  timer = window.setTimeout(async () => {
     number++
     if (number >= maxNumber) {
       // 假设没有数据了
@@ -57,18 +60,16 @@ function pullingUpHandler() {
     }
   }, 1000)
 }
-async function getSaid(c) {
+async function getSaid(c?: string) {
   const result = await $.get('https://v1.hitokoto.cn/', {
     c
   })
   return result.hitokoto
 }
-function render(text) {
+function render(text: string) {
   return `<div class="content-item">
             <div class="content-item-avatar">
-              <img
-                src="https://cdn.jsdelivr.net/npm/kang-static@latest/avatar.jpg"
-              />
+              <img src="https://cdn.jsdelivr.net/npm/kang-static@latest/avatar.jpg" />
             </div>
             <div class="content-item-body">${text}</div>
           </div>`
