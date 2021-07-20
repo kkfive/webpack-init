@@ -13,6 +13,7 @@ const loaderList = require('./loader/index')
 
 // 获取dev server 代理配置
 const devServer = require('./devServer/index')
+
 module.exports = {
   getEntry,
   getHtmlWebpack,
