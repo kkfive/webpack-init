@@ -12,7 +12,11 @@
     "emitDecoratorMetadata": true,
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "baseUrl": ["/src"],
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/js/"]
+  "include": ["src/types/images.d.ts", "src/js/"]
 }
