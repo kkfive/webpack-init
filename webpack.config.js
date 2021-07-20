@@ -26,6 +26,15 @@ const webpackConfig = {
   module: {
     rules: loaderList
   },
+  resolve: {
+    alias: {
+      '@src': resolve('src'),
+      '@font': resolve('src/font'),
+      '@js': resolve('src/js'),
+      '@style': resolve('src/style'),
+      '@image': resolve('src/image')
+    }
+  },
   plugins: [
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),

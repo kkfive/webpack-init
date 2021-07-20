@@ -4,6 +4,7 @@
 
 const HTMLLoader = require('./html')
 const stylusLoader = require('./stylus')
+const lessLoader = require('./less')
 const cssLoader = require('./css')
 const javascriptLoader = require('./javascript')
 const pugLoader = require('./pug')
@@ -13,6 +14,7 @@ const fontLoader = require('./font')
 module.exports = [
   HTMLLoader,
   stylusLoader,
+  lessLoader,
   cssLoader,
   javascriptLoader,
   pugLoader,

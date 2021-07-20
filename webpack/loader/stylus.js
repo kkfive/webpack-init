@@ -9,7 +9,7 @@ const stylus = {
     {
       loader: MiniCssExtractPlugin.loader,
       options: {
-        publicPath: '/'
+        publicPath: '../../'
       }
     },
     {
