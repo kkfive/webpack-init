@@ -26,6 +26,9 @@ const webpackConfig = {
   module: {
     rules: loaderList
   },
+  resolve: {
+    extensions: ['.js', '.ts', '.json']
+  },
   plugins: [
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),

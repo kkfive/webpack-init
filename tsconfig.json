@@ -13,10 +13,11 @@
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
     "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./",
     "paths": {
-      "baseUrl": ["/src"],
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     }
   },
-  "include": ["src/types/images.d.ts", "src/js/"]
+  "include": ["src/types/images.d.ts", "src/**/*"]
 }
