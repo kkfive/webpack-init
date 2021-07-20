@@ -1,10 +1,5 @@
 /**
  * @description: 处理图片
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 22:48:38
- * @LastEditTime: 2021-05-22 22:48:38
- * @LastEditors: 小康
  */
 
 const image = {

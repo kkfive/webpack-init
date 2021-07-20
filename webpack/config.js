@@ -1,10 +1,5 @@
 /**
  * @description: 用于一些常用且需要修改的配置
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 23:00:27
- * @LastEditTime: 2021-05-22 23:00:27
- * @LastEditors: 小康
  */
 
 const config = {

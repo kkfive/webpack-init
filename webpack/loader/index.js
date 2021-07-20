@@ -1,10 +1,5 @@
 /**
  * @description: loader配置入口
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 22:40:05
- * @LastEditTime: 2021-05-22 22:40:06
- * @LastEditors: 小康
  */
 
 const HTMLLoader = require('./html')

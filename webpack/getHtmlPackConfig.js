@@ -1,10 +1,5 @@
 /**
  * @description: HtmlPack配置
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-18 22:55:35
- * @LastEditTime: 2021-05-18 22:55:35
- * @LastEditors: 小康
  */
 const fs = require('fs')
 const { parse, resolve } = require('path')

@@ -1,10 +1,5 @@
 /**
  * @description: 处理pug模板
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 22:47:59
- * @LastEditTime: 2021-05-22 22:47:59
- * @LastEditors: 小康
  */
 const pug = {
   test: /\.pug/,

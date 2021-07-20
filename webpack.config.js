@@ -1,10 +1,5 @@
 /**
  * @description: webpack配置文件
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-18 09:39:58
- * @LastEditTime: 2021-05-18 09:39:58
- * @LastEditors: 小康
  */
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -17,7 +12,8 @@ const {
   loaderList,
   devServer
 } = require('./webpack/index')
-
+const webpack = require('webpack')
+const config = require('./config')
 const webpackConfig = {
   // 入口
   entry: getEntry('./src/js'),
@@ -36,7 +32,8 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: 'assets/css/[name].[contenthash:8].css' //对输出的文件进行重命名,默认为main.css
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({ G_CONFIG: JSON.stringify(config) })
   ],
   optimization: {
     splitChunks: {
@@ -56,11 +53,11 @@ const webpackConfig = {
         // },
         // 公共代码部分
         common: {
-          name: "common",
+          name: 'common',
           test: /[\\/]src[\\/]/,
           minSize: 0,
           minChunks: 2,
-          chunks: "all",
+          chunks: 'all',
           priority: 5
         },
         // // 处理入口chunk,同步的
@@ -77,7 +74,7 @@ const webpackConfig = {
           chunks: 'async',
           name: 'async-vendors',
           priority: 10
-        },
+        }
       }
     }
   },

@@ -1,10 +1,5 @@
 /**
  * @description: js文件处理loader
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 22:43:47
- * @LastEditTime: 2021-05-22 22:43:48
- * @LastEditors: 小康
  */
 const { babelLoaderOptions } = require('../config')
 const javascript = {

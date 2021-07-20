@@ -1,10 +1,5 @@
 /**
  * @description: 获取入口
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-18 22:53:31
- * @LastEditTime: 2021-05-18 22:53:32
- * @LastEditors: 小康
  */
 const fs = require('fs')
 const { parse, resolve } = require('path')

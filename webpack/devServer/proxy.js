@@ -1,10 +1,5 @@
 /**
- * @description:
- * @author: 小康
- * @url: https://xiaokang.me
- * @Date: 2021-05-22 23:20:56
- * @LastEditTime: 2021-05-22 23:20:56
- * @LastEditors: 小康
+ * @description: 反向代理配置
  */
 const proxy = {
   '/api': {
