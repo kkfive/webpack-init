@@ -1,0 +1,9 @@
+{
+  "jumpToAliasFile.alias": {
+    "@src": "d:\\personal\\webpack-init\\src",
+    "@font": "d:\\personal\\webpack-init\\src\\font",
+    "@js": "d:\\personal\\webpack-init\\src\\js",
+    "@style": "d:\\personal\\webpack-init\\src\\style",
+    "@image": "d:\\personal\\webpack-init\\src\\image"
+  }
+}
