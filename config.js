@@ -1,19 +1,7 @@
-const ENV = process.env.env_config
+const { GLOBAL_BASE_API } = process.env
 // 默认导出开发环境配置
 const config = {
-  BASE_URL: '/api'
+  BASE_URL: GLOBAL_BASE_API
 }
-switch (ENV) {
-  // 开发模式
-  case 'development':
-    break
-  // 测试模式
-  case 'test':
-    config.BASE_URL = 'http://api-test'
-    break
-  // 生产模式
-  case 'production':
-    config.BASE_URL = 'http://api-production'
-    break
-}
+
 module.exports = config

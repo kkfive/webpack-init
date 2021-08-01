@@ -73,3 +73,4 @@ function render(text) {
             <div class="content-item-body">${text}</div>
           </div>`
 }
+console.log(1234)
