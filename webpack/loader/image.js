@@ -4,11 +4,10 @@
 
 const image = {
   test: /\.(png|svg|jpe?g|gif)$/i,
-  loader: 'url-loader',
-  options: {
-    esModule: false,
-    limit: 1536,
-    name: 'assets/image/[name]_[hash:8].[ext]'
+  type: 'asset/resource',
+  generator: {
+    // [ext]前面自带"."
+    filename: 'assets/image/[name]_[hash:8][ext]'
   }
 }
 

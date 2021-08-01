@@ -1,14 +1,9 @@
 /**
  * @description: webpack server配置
  */
-const { resolve } = require('path')
 const proxy = require('./proxy')
 const port = 3000
 const devServer = {
-  // 构建后的路径
-  contentBase: resolve(__dirname, 'dist'),
-  // 启动gzip压缩
-  compress: true,
   // 端口号
   port,
   // 自动打开浏览器

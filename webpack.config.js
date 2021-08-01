@@ -5,7 +5,18 @@ const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const envMode = process.env.envMode
+require('dotenv').config({ path: `.env.${envMode}` })
+// 正则匹配以 VUE_APP_ 开头的 变量
+const prefixRE = /^GLOBAL_/
+let env = {}
+for (const key in process.env) {
+  if (key == 'NODE_ENV' || key == 'BASE_URL' || prefixRE.test(key)) {
+    env[key] = JSON.stringify(process.env[key])
+  }
+}
+
 const {
   getEntry,
   getHtmlWebpack,
@@ -20,7 +31,8 @@ const webpackConfig = {
   // 输出
   output: {
     path: resolve(__dirname, 'dist'),
-    filename: 'assets/js/[name].[chunkhash:8].js'
+    filename: 'assets/js/[name].[chunkhash:8].js',
+    clean: true
   },
   // loader配置
   module: {
@@ -42,8 +54,11 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: 'assets/css/[name].[contenthash:8].css' //对输出的文件进行重命名,默认为main.css
     }),
-    new CleanWebpackPlugin(),
-    new webpack.DefinePlugin({ G_CONFIG: JSON.stringify(config) })
+    new webpack.DefinePlugin({
+      'process.env': {
+        ...env
+      }
+    })
   ],
   optimization: {
     splitChunks: {
@@ -86,7 +101,26 @@ const webpackConfig = {
           priority: 10
         }
       }
-    }
+    },
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        // 多进程
+        parallel: true,
+        //删除注释
+        extractComments:
+          process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+        terserOptions: {
+          compress: {
+            // 生产环境去除console
+            drop_console:
+              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+            drop_debugger:
+              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false
+          }
+        }
+      })
+    ]
   },
   // 模式 development 或 production
   mode: process.env.NODE_ENV, // 开发模式
