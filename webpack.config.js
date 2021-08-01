@@ -106,12 +106,15 @@ const webpackConfig = {
         // 多进程
         parallel: true,
         //删除注释
-        extractComments: process.env.NODE_ENV === 'production' ? true : false,
+        extractComments:
+          process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
         terserOptions: {
           compress: {
             // 生产环境去除console
-            drop_console: process.env.NODE_ENV === 'production' ? true : false,
-            drop_debugger: process.env.NODE_ENV === 'production' ? true : false
+            drop_console:
+              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+            drop_debugger:
+              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false
           }
         }
       })
