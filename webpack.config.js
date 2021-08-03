@@ -8,7 +8,7 @@ const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plu
 const TerserPlugin = require('terser-webpack-plugin')
 const envMode = process.env.envMode
 require('dotenv').config({ path: `.env.${envMode}` })
-// 正则匹配以 VUE_APP_ 开头的 变量
+// 正则匹配以 GLOBAL_ 开头的 变量
 const prefixRE = /^GLOBAL_/
 let env = {}
 Object.keys(process.env).forEach((key) => {
@@ -119,6 +119,7 @@ const webpackConfig = {
   devServer
 }
 getHtmlWebpack().forEach((item) => {
+  console.log(item)
   webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
 })
 module.exports = webpackConfig

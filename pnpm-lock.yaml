@@ -41,6 +41,7 @@ specifiers:
   regenerator-runtime: ^0.13.9
   sass: ^1.37.0
   sass-loader: ^12.1.0
+  sass-resources-loader: ^2.2.3
   style-loader: ^3.2.1
   stylus: ^0.54.8
   stylus-loader: ^6.1.0
@@ -96,6 +97,7 @@ devDependencies:
   regenerator-runtime: registry.nlark.com/regenerator-runtime/0.13.9
   sass: registry.nlark.com/sass/1.37.0
   sass-loader: registry.nlark.com/sass-loader/12.1.0_sass@1.37.0+webpack@5.47.1
+  sass-resources-loader: registry.nlark.com/sass-resources-loader/2.2.3
   style-loader: registry.nlark.com/style-loader/3.2.1_webpack@5.47.1
   stylus: 0.54.8
   stylus-loader: registry.nlark.com/stylus-loader/6.1.0_stylus@0.54.8+webpack@5.47.1
@@ -319,6 +321,10 @@ packages:
     resolution: {integrity: sha1-1yYl4jRKNlbjo61Pp0n6gymdgv8=, tarball: async/download/async-2.6.3.tgz}
     dependencies:
       lodash: 4.17.21
+    dev: true
+
+  /async/3.2.0:
+    resolution: {integrity: sha1-s6JoXF67ZB094C0WEALGD8n4VyA=, tarball: async/download/async-3.2.0.tgz}
     dev: true
 
   /atob/2.1.2:
@@ -3137,6 +3143,8 @@ packages:
       json5: 2.2.0
       semver: registry.nlark.com/semver/6.3.0
       source-map: 0.5.7
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@babel/generator/7.14.9:
@@ -3234,6 +3242,8 @@ packages:
       lodash.debounce: registry.nlark.com/lodash.debounce/4.0.8
       resolve: 1.20.0
       semver: registry.nlark.com/semver/6.3.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@babel/helper-explode-assignable-expression/7.14.5:
@@ -4259,6 +4269,8 @@ packages:
       babel-plugin-polyfill-regenerator: registry.nlark.com/babel-plugin-polyfill-regenerator/0.2.2_@babel+core@7.14.8
       core-js-compat: registry.nlark.com/core-js-compat/3.16.0
       semver: registry.nlark.com/semver/6.3.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@babel/runtime/7.14.6:
@@ -4670,6 +4682,8 @@ packages:
       semver: registry.nlark.com/semver/7.3.5
       tsutils: registry.nlark.com/tsutils/3.21.0_typescript@4.3.5
       typescript: registry.nlark.com/typescript/4.3.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@typescript-eslint/experimental-utils/4.29.0_eslint@7.32.0+typescript@4.3.5:
@@ -4689,6 +4703,7 @@ packages:
       eslint-scope: registry.nlark.com/eslint-scope/5.1.1
       eslint-utils: registry.nlark.com/eslint-utils/3.0.0_eslint@7.32.0
     transitivePeerDependencies:
+      - supports-color
       - typescript
     dev: true
 
@@ -4711,6 +4726,8 @@ packages:
       debug: registry.nlark.com/debug/4.3.2
       eslint: registry.nlark.com/eslint/7.32.0
       typescript: registry.nlark.com/typescript/4.3.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@typescript-eslint/scope-manager/4.29.0:
@@ -4750,6 +4767,8 @@ packages:
       semver: registry.nlark.com/semver/7.3.5
       tsutils: registry.nlark.com/tsutils/3.21.0_typescript@4.3.5
       typescript: registry.nlark.com/typescript/4.3.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/@typescript-eslint/visitor-keys/4.29.0:
@@ -5123,6 +5142,8 @@ packages:
       '@babel/core': registry.nlark.com/@babel/core/7.14.8
       '@babel/helper-define-polyfill-provider': registry.nlark.com/@babel/helper-define-polyfill-provider/0.2.3_@babel+core@7.14.8
       semver: registry.nlark.com/semver/6.3.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/babel-plugin-polyfill-corejs3/0.2.2_@babel+core@7.14.8:
@@ -5136,6 +5157,8 @@ packages:
       '@babel/core': registry.nlark.com/@babel/core/7.14.8
       '@babel/helper-define-polyfill-provider': registry.nlark.com/@babel/helper-define-polyfill-provider/0.2.3_@babel+core@7.14.8
       core-js-compat: registry.nlark.com/core-js-compat/3.16.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/babel-plugin-polyfill-regenerator/0.2.2_@babel+core@7.14.8:
@@ -5148,6 +5171,8 @@ packages:
     dependencies:
       '@babel/core': registry.nlark.com/@babel/core/7.14.8
       '@babel/helper-define-polyfill-provider': registry.nlark.com/@babel/helper-define-polyfill-provider/0.2.3_@babel+core@7.14.8
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/babel-runtime/6.26.0:
@@ -5624,6 +5649,11 @@ packages:
     name: debug
     version: 4.3.2
     engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.2
     dev: true
@@ -5809,6 +5839,8 @@ packages:
       is-glob: 4.0.1
       resolve: 1.20.0
       tsconfig-paths: registry.nlark.com/tsconfig-paths/3.10.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/eslint-loader/4.0.2_eslint@7.32.0+webpack@5.47.1:
@@ -7523,6 +7555,17 @@ packages:
       neo-async: 2.6.2
       sass: registry.nlark.com/sass/1.37.0
       webpack: registry.nlark.com/webpack/5.47.1_webpack-cli@4.7.2
+    dev: true
+
+  registry.nlark.com/sass-resources-loader/2.2.3:
+    resolution: {integrity: sha1-G+kuoyakotjXw0g6AVd6cN99f6E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/sass-resources-loader/download/sass-resources-loader-2.2.3.tgz}
+    name: sass-resources-loader
+    version: 2.2.3
+    dependencies:
+      async: 3.2.0
+      chalk: registry.nlark.com/chalk/4.1.1
+      glob: registry.nlark.com/glob/7.1.7
+      loader-utils: registry.nlark.com/loader-utils/2.0.0
     dev: true
 
   registry.nlark.com/sass/1.37.0:

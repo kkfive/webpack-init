@@ -31,7 +31,7 @@ const getHtmlWebpack = () => {
         minifyCSS: true,
         minifyURLs: true
       },
-      chunks: [htmlFilePath[fileName]]
+      chunks: [fileName]
     }
     configs.push(config)
   })
