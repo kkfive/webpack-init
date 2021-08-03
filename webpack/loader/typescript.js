@@ -2,6 +2,7 @@
  * 处理typescript类型文件
  */
 const { babelLoaderOptions } = require('../config')
+
 const typescript = {
   test: /\.ts$/,
   exclude: /node_modules/,
@@ -15,17 +16,18 @@ const typescript = {
             {
               useBuiltIns: 'usage',
               corejs: {
-                //core-js的版本
+                // core-js的版本
                 version: 3
               },
-              //需要兼容的浏览器
+              // 需要兼容的浏览器
               targets: babelLoaderOptions
             }
           ]
         ]
       }
     },
-    'ts-loader'
+    'ts-loader',
+    'eslint-loader'
   ]
 }
 module.exports = typescript

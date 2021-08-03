@@ -1,8 +1,10 @@
 /**
  * @description: 处理css文件
  */
+// eslint-disable-next-line import/no-extraneous-dependencies
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { px2remLoaderOptions } = require('../config')
+
 const css = {
   test: /\.css$/,
   use: [

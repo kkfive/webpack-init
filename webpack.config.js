@@ -11,20 +11,14 @@ require('dotenv').config({ path: `.env.${envMode}` })
 // 正则匹配以 VUE_APP_ 开头的 变量
 const prefixRE = /^GLOBAL_/
 let env = {}
-for (const key in process.env) {
-  if (key == 'NODE_ENV' || key == 'BASE_URL' || prefixRE.test(key)) {
+Object.keys(process.env).forEach((key) => {
+  if (key === 'NODE_ENV' || key === 'BASE_URL' || prefixRE.test(key)) {
     env[key] = JSON.stringify(process.env[key])
   }
-}
+})
 
-const {
-  getEntry,
-  getHtmlWebpack,
-  loaderList,
-  devServer
-} = require('./webpack/index')
+const { getEntry, getHtmlWebpack, loaderList, devServer } = require('./webpack/index')
 const webpack = require('webpack')
-const config = require('./config')
 const webpackConfig = {
   // 入口
   entry: getEntry('./src/ts'),
@@ -108,15 +102,12 @@ const webpackConfig = {
         // 多进程
         parallel: true,
         //删除注释
-        extractComments:
-          process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+        extractComments: process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
         terserOptions: {
           compress: {
             // 生产环境去除console
-            drop_console:
-              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
-            drop_debugger:
-              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false
+            drop_console: process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+            drop_debugger: process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false
           }
         }
       })

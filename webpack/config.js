@@ -17,11 +17,12 @@ const config = {
    * babel-loader需要兼容的浏览器设置
    */
   babelLoaderOptions: {
-    chrome: '60',
+    chrome: '50',
     firefox: '60',
     ie: '9',
-    safari: '10',
-    edge: '17'
+    safari: '9',
+    edge: '17',
+    android: '4'
   }
 }
 
