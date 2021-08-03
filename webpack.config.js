@@ -6,24 +6,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const envMode = process.env.envMode
+
+const { envMode } = process.env
 require('dotenv').config({ path: `.env.${envMode}` })
 // 正则匹配以 VUE_APP_ 开头的 变量
 const prefixRE = /^GLOBAL_/
-let env = {}
-for (const key in process.env) {
-  if (key == 'NODE_ENV' || key == 'BASE_URL' || prefixRE.test(key)) {
+const env = {}
+
+Object.keys(process.env).forEach((key) => {
+  if (key === 'NODE_ENV' || key === 'BASE_URL' || prefixRE.test(key)) {
     env[key] = JSON.stringify(process.env[key])
   }
-}
+})
 
-const {
-  getEntry,
-  getHtmlWebpack,
-  loaderList,
-  devServer
-} = require('./webpack/index')
 const webpack = require('webpack')
+const { getEntry, getHtmlWebpack, loaderList, devServer } = require('./webpack/index')
+
 const webpackConfig = {
   // 入口
   entry: getEntry('./src/js'),
@@ -50,7 +48,7 @@ const webpackConfig = {
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].[contenthash:8].css' //对输出的文件进行重命名,默认为main.css
+      filename: 'assets/css/[name].[contenthash:8].css' // 对输出的文件进行重命名,默认为main.css
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -60,7 +58,7 @@ const webpackConfig = {
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all', //块的范围，有三个可选值：initial/async动态异步加载/all全部块(推荐)，默认为async;
+      chunks: 'all', // 块的范围，有三个可选值：initial/async动态异步加载/all全部块(推荐)，默认为async;
       cacheGroups: {
         // commons: {
         //   name: 'style' ,  // 提取出来的文件命名
@@ -88,6 +86,8 @@ const webpackConfig = {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'initial',
           name: 'vendors',
+          // minChunks: 2, // 表示提取公共部分最少的文件数
+          // minSize: 0, // 表示提取公共部分最小的大小
           priority: 10
         },
         // 处理异步chunk
@@ -105,16 +105,13 @@ const webpackConfig = {
       new TerserPlugin({
         // 多进程
         parallel: true,
-        //删除注释
-        extractComments:
-          process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
+        // 删除注释
+        extractComments: process.env.GLOBAL_SHOWCONSOLE === 'false',
         terserOptions: {
           compress: {
             // 生产环境去除console
-            drop_console:
-              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false,
-            drop_debugger:
-              process.env.GLOBAL_SHOWCONSOLE === 'false' ? true : false
+            drop_console: process.env.GLOBAL_SHOWCONSOLE === 'false',
+            drop_debugger: process.env.GLOBAL_SHOWCONSOLE === 'false'
           }
         }
       })

@@ -3,5 +3,6 @@
  */
 import 'lib-flexible'
 import '../style/about/index.scss'
-import { say } from './modules/sayHello'
-say('about')
+import say from './modules/sayHello'
+
+say.say('about')

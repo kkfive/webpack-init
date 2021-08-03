@@ -2,6 +2,7 @@
  * @description: js文件处理loader
  */
 const { babelLoaderOptions } = require('../config')
+
 const javascript = {
   test: /\.js$/,
   exclude: /node_modules/,
@@ -15,16 +16,17 @@ const javascript = {
             {
               useBuiltIns: 'usage',
               corejs: {
-                //core-js的版本
+                // core-js的版本
                 version: 3
               },
-              //需要兼容的浏览器
+              // 需要兼容的浏览器
               targets: babelLoaderOptions
             }
           ]
         ]
       }
-    }
+    },
+    'eslint-loader'
   ]
 }
 

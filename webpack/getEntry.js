@@ -5,8 +5,6 @@ const fs = require('fs')
 const { parse, resolve } = require('path')
 /**
  * 传入路径获取入口文件配置
- * @author 小康
- * @date 2021-05-18
  * @param {String} path 入口js文件夹
  * @returns {Object} 入口配置对象
  */
