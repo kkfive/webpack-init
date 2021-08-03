@@ -14,11 +14,12 @@ const getEntry = (path) => {
   files.forEach((item) => {
     const { name, ext, base } = parse(resolve(__dirname, path, item))
     // 如果ext存在,则认为是入口js文件
-    if (ext) {
-      entry[name] = resolve(path, base)
+    if (!ext) {
+      entry[name] = resolve(path, base, name)
     }
   })
   return entry
 }
-
+// console.log(resolve(__dirname, '../src/views'))
+// console.log(getEntry(resolve(__dirname, '../src/views')))
 module.exports = getEntry

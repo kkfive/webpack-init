@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+}
+@include font('PingFang-SC-Medium');
+.container {
+  position: relative;
+  .header-wrapper {
+    $header-wrapper-height: 40px;
+    background: red;
+    height: $header-wrapper-height;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    .header-content {
+      display: inline-block;
+      padding: 0 10px;
+      box-sizing: border-box;
+      .header-content-item {
+        display: inline-block;
+        width: 125px;
+        height: 100%;
+        line-height: $header-wrapper-height;
+      }
+    }
+  }
+  .wrapper {
+    position: fixed;
+    top: 45px;
+    bottom: 10px;
+    height: auto;
+    width: 100%;
+    // background: green;
+    overflow: hidden;
+    .content {
+      padding: 0 10px;
+      box-sizing: border-box;
+      font-family: 'PingFang-SC-Medium';
+      .pullup-txt {
+        display: none;
+        text-align: center;
+        display: block;
+        font-size: 17px;
+        color: white;
+      }
+      .content-item {
+        width: 100%;
+        background: white;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        .content-item-avatar {
+          width: 50px;
+          height: 50px;
+          img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+        .content-item-body {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .button {
+    $buttonHeight: 40px;
+    width: 80px;
+    height: $buttonHeight;
+    background: red;
+    margin: 0 auto;
+    text-align: center;
+    line-height: $buttonHeight;
+  }
+}

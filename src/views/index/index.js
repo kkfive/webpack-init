@@ -1,7 +1,7 @@
 /**
  * @description: index页面入口文件
  */
-import '../style/index/index.styl'
+import './index.scss'
 import 'lib-flexible'
 import $ from 'jquery'
 // 导入better-scroll核心组件
