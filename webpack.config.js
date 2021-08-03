@@ -21,7 +21,7 @@ const { getEntry, getHtmlWebpack, loaderList, devServer } = require('./webpack/i
 const webpack = require('webpack')
 const webpackConfig = {
   // 入口
-  entry: getEntry('./src/ts'),
+  entry: getEntry(resolve(__dirname, './src/views')),
   // 输出
   output: {
     path: resolve(__dirname, 'dist'),
@@ -118,7 +118,7 @@ const webpackConfig = {
   // 开发服务器devServer 启动指令 webpack serve
   devServer
 }
-getHtmlWebpack('./src/template/').forEach((item) => {
+getHtmlWebpack().forEach((item) => {
   webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
 })
 module.exports = webpackConfig

@@ -3,40 +3,37 @@
  */
 const fs = require('fs')
 const { parse, resolve } = require('path')
+const getEntry = require('./getEntry')
 /**
  * 传入路径获取入口文件配置
- * @author 小康
- * @date 2021-05-18
  * @param {String} path 入口HTML文件夹
  * @returns {Array} HtmlWebpack配置对象
  */
-const getHtmlWebpack = (path) => {
-  const files = fs.readdirSync(path)
+const htmlFilePath = getEntry(resolve(__dirname, '../src/views'))
+const getHtmlWebpack = () => {
+  const fileNameList = Object.keys(htmlFilePath)
   const configs = []
-  files.forEach((item) => {
-    const { name, ext, base } = parse(resolve(__dirname, path, item))
-    // 如果ext存在,则认为是模板文件
-    if (ext) {
-      const config = {
-        filename: `${name}.html`,
-        template: resolve(path, item),
-        inject: true,
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true
-        },
-        chunks: [name]
-      }
-      configs.push(config)
+  fileNameList.forEach((fileName) => {
+    const template = htmlFilePath[fileName] + '.html'
+    const config = {
+      filename: `${fileName}.html`,
+      template,
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      chunks: [htmlFilePath[fileName]]
     }
+    configs.push(config)
   })
   return configs
 }

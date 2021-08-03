@@ -25,6 +25,12 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true
       }
-    }
+    },
+    'import/extensions': [
+      'error',
+      {
+        ts: 'never'
+      }
+    ]
   }
 }
