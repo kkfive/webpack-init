@@ -35,11 +35,7 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.ts', '.json'],
     alias: {
-      '@src': resolve('src'),
-      '@font': resolve('src/font'),
-      '@ts': resolve('src/ts'),
-      '@style': resolve('src/style'),
-      '@image': resolve('src/image')
+      '@': resolve(__dirname, 'src')
     }
   },
   plugins: [
@@ -119,7 +115,6 @@ const webpackConfig = {
   devServer
 }
 getHtmlWebpack().forEach((item) => {
-  console.log(item)
   webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
 })
 module.exports = webpackConfig

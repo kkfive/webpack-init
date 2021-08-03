@@ -1,9 +1,9 @@
 {
+  "jumpToAliasFile.webpeckConfigPath": "./webpack.config.js",
   "jumpToAliasFile.alias": {
-    "@src": "d:\\coder\\webpack\\webpack-init\\src",
-    "@font": "d:\\coder\\webpack\\webpack-init\\src\\font",
-    "@ts": "d:\\coder\\webpack\\webpack-init\\src\\ts",
-    "@style": "d:\\coder\\webpack\\webpack-init\\src\\style",
-    "@image": "d:\\coder\\webpack\\webpack-init\\src\\image"
+    "@": "d:\\personal\\webpack-init\\src"
+  },
+  "pathAlias.aliasMap": {
+    "@": "${cwd}/src"
   }
 }

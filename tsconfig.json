@@ -12,13 +12,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "dist/lib",
-    "typeRoots": ["node_modules/@types", "src/types/"],
+    "typeRoots": ["node_modules/@types", "src/common/types/"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@ts/*": ["src/ts/*"],
-      "@style/*": ["src/style/*"],
-      "@image/*": ["src/image/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*"]
