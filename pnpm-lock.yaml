@@ -17,6 +17,7 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-airbnb-base: ^14.2.1
   eslint-config-prettier: ^8.3.0
+  eslint-import-resolver-alias: ^1.1.2
   eslint-import-resolver-webpack: ^0.13.1
   eslint-loader: ^4.0.2
   eslint-plugin-import: ^2.23.4
@@ -70,6 +71,7 @@ devDependencies:
   eslint: registry.nlark.com/eslint/7.32.0
   eslint-config-airbnb-base: registry.nlark.com/eslint-config-airbnb-base/14.2.1_ee2ddb12623c985c36290f985ad5559c
   eslint-config-prettier: registry.nlark.com/eslint-config-prettier/8.3.0_eslint@7.32.0
+  eslint-import-resolver-alias: registry.nlark.com/eslint-import-resolver-alias/1.1.2_eslint-plugin-import@2.23.4
   eslint-import-resolver-webpack: registry.nlark.com/eslint-import-resolver-webpack/0.13.1_4d9bb358aba8c0530c6917d8785b991e
   eslint-loader: registry.nlark.com/eslint-loader/4.0.2_eslint@7.32.0+webpack@5.47.1
   eslint-plugin-import: registry.nlark.com/eslint-plugin-import/2.23.4_eslint@7.32.0
@@ -5621,6 +5623,18 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: registry.nlark.com/eslint/7.32.0
+    dev: true
+
+  registry.nlark.com/eslint-import-resolver-alias/1.1.2_eslint-plugin-import@2.23.4:
+    resolution: {integrity: sha1-KXBiiQ4x5NZlHrXrqVNOH25o/Jc=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/eslint-import-resolver-alias/download/eslint-import-resolver-alias-1.1.2.tgz}
+    id: registry.nlark.com/eslint-import-resolver-alias/1.1.2
+    name: eslint-import-resolver-alias
+    version: 1.1.2
+    engines: {node: '>= 4'}
+    peerDependencies:
+      eslint-plugin-import: '>=1.4.0'
+    dependencies:
+      eslint-plugin-import: registry.nlark.com/eslint-plugin-import/2.23.4_eslint@7.32.0
     dev: true
 
   registry.nlark.com/eslint-import-resolver-node/0.3.4:

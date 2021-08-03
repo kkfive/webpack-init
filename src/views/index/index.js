@@ -42,6 +42,7 @@ $(() => {
   console.log(headerScroll)
   // 内容区滑动
   const wrapper = document.querySelector('.wrapper')
+
   bodyScroll = new BScroll(wrapper, {
     scrollY: true,
     probeType: 3, // listening scroll event

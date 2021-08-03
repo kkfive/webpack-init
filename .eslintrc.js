@@ -14,5 +14,11 @@ module.exports = {
     'no-console': 0,
     'no-unresolved': 0
   },
-  settings: {}
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['@src', './src']]
+      }
+    }
+  }
 }
