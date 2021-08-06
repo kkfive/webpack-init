@@ -16,4 +16,7 @@
       <img src="" />
     </div>
   </body>
+  <% for (var i in htmlWebpackPlugin.options.files&&htmlWebpackPlugin.options.files.js) { %>
+  <script src="<%= htmlWebpackPlugin.options.files.js[i] %>"></script>
+  <% } %>
 </html>

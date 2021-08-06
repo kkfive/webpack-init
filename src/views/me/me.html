@@ -13,4 +13,7 @@
     <div class="container"></div>
     <button class="button">这是一个按钮</button>
   </body>
+  <% for (var i in htmlWebpackPlugin.options.files&&htmlWebpackPlugin.options.files.js) { %>
+  <script src="<%= htmlWebpackPlugin.options.files.js[i] %>"></script>
+  <% } %>
 </html>

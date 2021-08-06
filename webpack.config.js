@@ -19,6 +19,11 @@ Object.keys(process.env).forEach((key) => {
 
 const { getEntry, getHtmlWebpack, loaderList, devServer } = require('./webpack/index')
 const webpack = require('webpack')
+// cdn预加载使用
+const externals = {
+  jquery: 'window.$'
+}
+
 const webpackConfig = {
   // 入口
   entry: getEntry(resolve(__dirname, './src/views')),
@@ -38,6 +43,7 @@ const webpackConfig = {
       '@': resolve(__dirname, 'src')
     }
   },
+  externals: envMode ? externals : {},
   plugins: [
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),

@@ -99,7 +99,6 @@ $.extend({
         if (option.modal || option.modal === 'true') {
           $('body').append($modal)
           $modal.fadeIn(dialog.time)
-          // eslint-disable-next-line no-unused-expressions
           option.bodyScroll && $('body').css('overflow', 'hidden')
         }
         $('body').append($container)
@@ -164,7 +163,7 @@ $.extend({
             })
           }
           // 绑定点击后的事件
-          $button.bind(dialog.event, option.buttons[key])
+          $button.on(dialog.event, option.buttons[key])
           $buttonBox.append($button)
         })
 
@@ -238,9 +237,12 @@ $.extend({
 
         if (option.actionsheetCloseText) {
           $buttonBox.append($actionsheetCloseBtn)
-          $(document).delegate('.alert-btn-sheet,.alert-modal', 'click', () => {
+          $(document).on('click', '.alert-btn-sheet,.alert-modal', () => {
             dialog.close()
           })
+          // $(document).delegate('.alert-btn-sheet,.alert-modal', 'click', () => {
+          //   dialog.close()
+          // })
         }
 
         // eslint-disable-next-line no-use-before-define
