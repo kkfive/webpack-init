@@ -10,6 +10,7 @@ const cssLoader = require('./css')
 const javascriptLoader = require('./javascript')
 const typescriptLoader = require('./typescript')
 const pugLoader = require('./pug')
+const ejsLoader = require('./ejs')
 const imageLoader = require('./image')
 const fontLoader = require('./font')
 
@@ -22,6 +23,7 @@ module.exports = [
   javascriptLoader,
   typescriptLoader,
   pugLoader,
+  ejsLoader,
   imageLoader,
   fontLoader
 ]

@@ -35,9 +35,9 @@ const sass = {
       loader: 'sass-resources-loader',
       options: {
         resources: [
-          ...getResourcesPath(resolve(__dirname, '../../src/style/variable')),
-          ...getResourcesPath(resolve(__dirname, '../../src/style/mixin')),
-          ...getResourcesPath(resolve(__dirname, '../../src/style/function'))
+          ...getResourcesPath(resolve(__dirname, '../../src/styles/variable')),
+          ...getResourcesPath(resolve(__dirname, '../../src/styles/mixin')),
+          ...getResourcesPath(resolve(__dirname, '../../src/styles/function'))
         ]
       }
     }
