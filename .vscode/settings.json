@@ -2,8 +2,5 @@
   "jumpToAliasFile.webpeckConfigPath": "./webpack.config.js",
   "jumpToAliasFile.alias": {
     "@": "d:\\personal\\webpack-init\\src"
-  },
-  "pathAlias.aliasMap": {
-    "@": "${cwd}/src"
   }
 }

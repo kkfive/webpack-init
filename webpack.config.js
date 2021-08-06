@@ -114,6 +114,9 @@ const webpackConfig = {
   // 开发服务器devServer 启动指令 webpack serve
   devServer
 }
+if (process.env.NODE_ENV !== 'production') {
+  webpackConfig.devtool = 'eval-source-map'
+}
 getHtmlWebpack().forEach((item) => {
   webpackConfig.plugins.push(new HtmlWebpackPlugin(item))
 })
