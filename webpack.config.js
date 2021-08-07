@@ -8,6 +8,7 @@ const OptiomizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plu
 const TerserPlugin = require('terser-webpack-plugin')
 const envMode = process.env.envMode
 require('dotenv').config({ path: `.env.${envMode}` })
+const config = require('./config.js')
 // 正则匹配以 GLOBAL_ 开头的 变量
 const prefixRE = /^GLOBAL_/
 let env = {}
@@ -20,9 +21,7 @@ Object.keys(process.env).forEach((key) => {
 const { getEntry, getHtmlWebpack, loaderList, devServer } = require('./webpack/index')
 const webpack = require('webpack')
 // cdn预加载使用
-const externals = {
-  jquery: 'window.$'
-}
+const externals = config.externals
 
 const webpackConfig = {
   // 入口
@@ -43,7 +42,7 @@ const webpackConfig = {
       '@': resolve(__dirname, 'src')
     }
   },
-  externals: envMode ? externals : {},
+  externals,
   plugins: [
     // 压缩CSS
     new OptiomizeCssAssetsWebpackPlugin(),

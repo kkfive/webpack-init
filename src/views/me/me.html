@@ -8,12 +8,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover,user-scalable=no"
     />
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   </head>
   <body>
     <div class="container"></div>
     <button class="button">这是一个按钮</button>
   </body>
-  <% for (var i in htmlWebpackPlugin.options.files&&htmlWebpackPlugin.options.files.js) { %>
-  <script src="<%= htmlWebpackPlugin.options.files.js[i] %>"></script>
-  <% } %>
 </html>
