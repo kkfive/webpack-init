@@ -28,7 +28,7 @@ const webpackConfig = {
   entry: getEntry(resolve(__dirname, './src/views')),
   // 输出
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: resolve(__dirname, config.output),
     filename: 'assets/js/[name].[chunkhash:8].js',
     clean: true
   },

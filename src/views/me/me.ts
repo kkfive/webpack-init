@@ -2,14 +2,12 @@
  * @description: me文件入口
  */
 
-import showVconsole from '@/utils/vConsole'
+import '@/utils/vConsole'
 import 'lib-flexible'
 import simpleTemplate from '@/components/simple.pug'
-
 import introduceTemplate from '@/components/introduce.ejs'
-import $ from '@/utils/jquery'
 
-showVconsole()
+import $ from '@/utils/jquery'
 
 console.log('foo')
 

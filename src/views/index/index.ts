@@ -1,3 +1,4 @@
+import { hitokotoAPI } from '@/common/api'
 /**
  * @description: index页面入口文件
  */
@@ -20,7 +21,7 @@ const maxNumber = 10
 
 $(() => {
   async function getSaid(c?: string) {
-    const result = await $.get('https://v1.hitokoto.cn/', {
+    const result = await $.get(hitokotoAPI as string, {
       c
     })
     return result.hitokoto

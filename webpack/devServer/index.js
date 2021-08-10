@@ -1,7 +1,7 @@
 /**
  * @description: webpack server配置
  */
-const proxy = require('./proxy')
+const { proxy } = require('../../config')
 const port = 3000
 const devServer = {
   // 端口号
