@@ -9,7 +9,7 @@ body {
   position: relative;
   .header-wrapper {
     $header-wrapper-height: 40px;
-    background: red;
+    background: $primary;
     height: $header-wrapper-height;
     width: 100%;
     white-space: nowrap;
