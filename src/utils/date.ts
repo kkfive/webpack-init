@@ -1,7 +1,7 @@
 /**
  * 时间类
  */
-import dayjs from 'dayjs'
+import * as dayjs from 'dayjs'
 
 /** **通用常量*** */
 
@@ -21,19 +21,21 @@ export const now = () => Date.now()
 
 const isNumber = (num: number) => typeof num === 'number'
 
-const getDate = (date: number | string) => {
+const getDate = (date: number | string | Date) => {
   if (isNumber(date as number)) {
     return dayjs(date)
   }
   return dayjs(date, DATE_TIME_FMT)
 }
+const res = getDate(1628647596932)
+console.log(res) // 2021-08-11
 
 /**
  * 格式化日期
  * @param {string, number} date
  * @param {*} fmt
  */
-export const format = (date: string | number, fmt = DATE_FMT) => {
+export const format = (date: string | number | Date, fmt = DATE_FMT) => {
   if (!date) {
     return date
   }
@@ -45,48 +47,43 @@ export const format = (date: string | number, fmt = DATE_FMT) => {
  * 获取日期时间戳
  * @param {*} date
  */
-export const getTimestamp = (date: number | string) => {
-  if (isNumber(date as number)) {
-    return date
-  }
-  return getDate(date).valueOf()
-}
+export const getTimestamp = (date: string) => getDate(date).valueOf()
 
 /**
  * 获取秒 如果不传值获取当前秒值
  * @param {*} date
  */
-export const getSecond = (date = Date.now()) => getDate(date).second()
+export const getSecond = (date: number | string = Date.now()) => getDate(date).second()
 
 /**
  * 获取分钟, 如果不传值获取当前分钟值
  * @param {*} date
  */
-export const getMinute = (date = Date.now()) => getDate(date).minute()
+export const getMinute = (date: number | string = Date.now()) => getDate(date).minute()
 
 /**
  *  获取小时, 如果不传值获取当前分钟值
  * @param {*} date
  */
-export const getHour = (date = Date.now()) => getDate(date).hour()
+export const getHour = (date: number | string = Date.now()) => getDate(date).hour()
 
 /**
  * 获取当前是本月第几天
  * @param {*} date
  */
-export const getDay = (date = Date.now()) => getDate(date).date()
+export const getDay = (date: number | string = Date.now()) => getDate(date).date()
 
 /**
  * 获取当前月份
  * @param {*} date
  */
-export const getMonth = (date = Date.now()) => getDate(date).month() + 1
+export const getMonth = (date: number | string = Date.now()) => getDate(date).month() + 1
 
 /**
  * 获取当前年份
  * @param {*} date
  */
-export const getYear = (date = Date.now()) => getDate(date).year()
+export const getYear = (date: number | string = Date.now()) => getDate(date).year()
 
 /**
  * 用于表格格式化单元格

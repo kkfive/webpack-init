@@ -3,3 +3,9 @@
   width: 120px;
   background: url('@/assets/image/avatar.jpg');
 }
+$total: 8;
+@for $i from 1 through $total {
+  .col-#{$i} {
+    width: column-width($i);
+  }
+}
