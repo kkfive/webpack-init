@@ -1,4 +1,3 @@
-import { hitokotoAPI } from '@/common/api'
 /**
  * @description: index页面入口文件
  */
@@ -9,6 +8,7 @@ import * as $ from 'jquery'
 import BScroll from '@better-scroll/core'
 import Pullup from '@better-scroll/pull-up'
 import ObserveDOM from '@better-scroll/observe-dom'
+import { hitokotoAPI } from '@/common/api'
 
 BScroll.use(ObserveDOM)
 BScroll.use(Pullup)

@@ -81,6 +81,7 @@
     "@better-scroll/pull-up": "^2.4.1",
     "axios": "^0.21.1",
     "better-scroll": "^2.4.1",
+    "dayjs": "^1.10.6",
     "jquery": "^3.6.0",
     "lib-flexible": "^0.3.2",
     "vconsole": "^3.9.1"

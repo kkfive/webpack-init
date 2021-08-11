@@ -15,6 +15,7 @@ specifiers:
   core-js: ^3.16.0
   cross-env: ^7.0.3
   css-loader: ^6.2.0
+  dayjs: ^1.10.6
   dotenv: ^10.0.0
   ejs: ^3.1.6
   ejs-compiled-loader: ^3.1.0
@@ -60,6 +61,7 @@ dependencies:
   '@better-scroll/pull-up': registry.nlark.com/@better-scroll/pull-up/2.4.1
   axios: 0.21.1
   better-scroll: registry.nlark.com/better-scroll/2.4.1
+  dayjs: registry.nlark.com/dayjs/1.10.6
   jquery: registry.nlark.com/jquery/3.6.0
   lib-flexible: registry.nlark.com/lib-flexible/0.3.2
   vconsole: registry.nlark.com/vconsole/3.9.1
@@ -5423,6 +5425,12 @@ packages:
       is-resolvable: 1.1.0
       postcss: registry.nlark.com/postcss/8.3.4
     dev: true
+
+  registry.nlark.com/dayjs/1.10.6:
+    resolution: {integrity: sha1-KIsqqC8thBimydTfWJjAc3rQKmM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/dayjs/download/dayjs-1.10.6.tgz?cache=0&sync_timestamp=1625564133067&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdayjs%2Fdownload%2Fdayjs-1.10.6.tgz}
+    name: dayjs
+    version: 1.10.6
+    dev: false
 
   registry.nlark.com/debug/2.6.9:
     resolution: {integrity: sha1-XRKFFd8TT/Mn6QpMk/Tgd6U2NB8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/debug/download/debug-2.6.9.tgz}
